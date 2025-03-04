@@ -1,19 +1,8 @@
-document.getElementById('reservaForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const nombre = document.getElementById('nombre').value;
-    const fecha = document.getElementById('fecha').value;
-    const hora = document.getElementById('hora').value;
-
-    console.log(`Reserva creada para: ${nombre} el ${fecha} a las ${hora}`);
-    alert('Reserva guardada localmente (aún falta conectar Firebase)');
-});
-
-// Importa Firebase
+// Importar Firebase (versión modular desde CDN oficial)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Configuración de Firebase
+// Configuración de Firebase (la tuya)
 const firebaseConfig = {
     apiKey: "AIzaSyC_11F_hVfy_OzGu7dpWlXiT8Nw0RctoLQ",
     authDomain: "casa-acueducto-morelia.firebaseapp.com",
@@ -28,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Captura el formulario y guarda en Firestore
+// Capturar el formulario y guardar en Firestore
 document.getElementById('reservaForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -47,6 +36,6 @@ document.getElementById('reservaForm').addEventListener('submit', async (e) => {
         console.log("Reserva guardada con ID: ", docRef.id);
     } catch (error) {
         console.error("❌ Error al guardar la reserva: ", error);
-        alert('Error al guardar la reserva');
+        alert('❌ Error al guardar la reserva');
     }
 });
